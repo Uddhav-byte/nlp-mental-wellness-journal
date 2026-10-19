@@ -8,6 +8,7 @@ import MoodHeatmap from './components/MoodHeatmap';
 import StressTriggerCloud from './components/StressTriggerCloud';
 import CopingStudio from './components/CopingStudio';
 import JournalHistory from './components/JournalHistory';
+import HeroBrainDashboard from './components/HeroBrainDashboard';
 import { getAnalyticsOverview } from './utils/api';
 import { Sparkles, Heart, Shield, RefreshCw } from 'lucide-react';
 
@@ -66,8 +67,18 @@ export default function App() {
         {/* TAB 1: JOURNAL & CORE DASHBOARD */}
         {activeTab === 'dashboard' && (
           <div className="space-y-8 animate-in fade-in duration-300">
+            {/* Hero 3D Brain Telemetry Section */}
+            <HeroBrainDashboard
+              analytics={analytics}
+              onOpenEditor={() => {
+                const el = document.getElementById('journal-editor-section');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }}
+              onOpenCoping={() => setActiveTab('coping')}
+            />
+
             {/* Top Grid: Journal Composer + Weekly Wave Overview */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div id="journal-editor-section" className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
               <div className="lg:col-span-7">
                 <DailyJournalEditor onEntryCreated={handleEntryCreated} />
               </div>
