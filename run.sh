@@ -17,8 +17,8 @@ cleanup() {
 }
 trap cleanup SIGINT SIGTERM
 
-echo "Starting FastAPI Backend on http://localhost:8000..."
-uvicorn backend.app.main:app --host 0.0.0.0 --port 8000 --reload &
+echo "Starting FastAPI Backend on http://localhost:8001..."
+uvicorn backend.app.main:app --host 0.0.0.0 --port 8001 --reload &
 
 echo "Starting React Frontend on http://localhost:5173..."
 cd frontend && npm run dev &
